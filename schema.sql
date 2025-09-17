@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS country (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS state (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    country_id INTEGER NOT NULL,
+    FOREIGN KEY (country_id) REFERENCES country(id)
+);
+
+CREATE TABLE IF NOT EXISTS city (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    state_id INTEGER NOT NULL,
+    latitude REAL,
+    longitude REAL,
+    FOREIGN KEY (state_id) REFERENCES state(id)
+);
